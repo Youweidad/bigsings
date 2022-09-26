@@ -30,3 +30,22 @@ body {
 .reg-wrap {
   display: none;
 }
+
+.layui-form {
+  padding: 0 30px;
+}
+.links {
+  display: flex;
+  justify-content: flex-end;
+}
+.layui-form-item{
+  position: relative;
+}
+.layui-icon{
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+.layui-input {
+  padding-left: 35px;
+}
