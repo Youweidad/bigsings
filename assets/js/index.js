@@ -27,3 +27,5 @@ const renderAvatar = (res) => {
   }
   $('.text').html(`欢迎&nbsp;$nbsp;${res.data.username}`)
 }
+// 问题：你在切换分支的时候:git checkout home
+// 如果你切的分支名称
