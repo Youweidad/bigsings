@@ -41,13 +41,14 @@ a {
 .layui-nav-img {
   width: 40px;
   height: 40px;
+  display: none;
 }
 
 .text-avatar {
   display: inline-block;
   width: 40px;
   height: 40px;
-  background-color: #009688;
+  background-color:black;
   border-radius: 50%;
   line-height: 40px;
   text-align: center;
@@ -56,6 +57,7 @@ a {
   position: relative;
   top: 4px;
   margin-right: 10px;
+  /* display: none; */
 }
 
 .layui-nav-item a {
