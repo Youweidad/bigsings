@@ -7,13 +7,10 @@ $(function(){
 // 由var 声明的变量或者function 关键字声明的变量会默认存在 window 全局变量上 但是let const 不会 
 function getUserInfo() {
   $.ajax({
-    method:'GET',
-    url:'/my/userinfo',
-    headers:{
-      Authorization:localStorage.getItem('big_news_token' || '')
-    },
-    success(res){
-      if(res.code !==0) return layer.msg(res.message)
+    method: 'GET',
+    url: '/my/userinfo',
+    success(res) {
+      if (res.code !== 0) return layer.msg(res.message)
       // 按需渲染头像
       renderAvatar(res)
     }
@@ -21,19 +18,20 @@ function getUserInfo() {
 }
 
 const renderAvatar = (res) => {
-  if(res.user_pic) {
+  if (res.data.user_pic) {
     $('.text-avatar').hide()
-    $('.user-box img').attr('src',res.user_pic).show()
-  }else{
+    // attr prop 适用于对属性的操作
+    $('.user-box img').attr('src', res.data.user_pic).show()
+  } else {
     $('.layui-nav-img').hide()
     // 显示文字头像，取username属性的第一个字母
+    // 取 nickname 和 username
     const name = res.data.nickname || res.data.username
-    const char =name[0].toUpperCase()
-    // const char = res.data.username.charAt(0).toUpperCase()
-    $('.text-avatar').html(char).show()
+    // const char = name.charAt(0).toUpperCase()
+    const char = name[0].toUpperCase()
+    $('.text-avatar').css('display', 'flex').html(char).show()
   }
-  // $('#welcome').html(`欢迎&nbsp;$nbsp;${res.data.username}`)
-  $('#welcome').html(`欢迎&nbsp;${res.data.nickname}`)
+  $('.text').html(`欢迎&nbsp;&nbsp;${res.data.nickname}`)
 }
 
 // 实现退出操作
