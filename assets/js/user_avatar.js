@@ -1,3 +1,4 @@
+let layer = layui.layer
 $(function () {
   // 1.1 获取裁剪区域的 DOM 元素
   var $image = $('#image')
@@ -30,5 +31,35 @@ $(function () {
       .attr('src', blobUrl)  // 重新设置图片路径
       .cropper(options)        // 重新初始化裁剪区域
 
+  })
+
+
+  // 未确定按钮  绑定点击事件
+  $('#btnConfirm').on('click', function () {
+    // 要拿到用户裁剪之后的头像
+    let dataURL = $image
+      .cropper('getCroppedCanvas', {
+        width: 100,
+        height: 100
+      })
+      .toDataURL('image/png')       // 将 Canvas 画布上的内容，转化为 base64 格式的字符串
+    //  调用接口，吧头像上传到服务器
+    $.ajax({
+      method: 'PATCH',
+      url: '/my/update/avatar',
+      data: {
+        avatar: dataURL
+      },
+      success(res) {
+        if (res.code !== 0) {
+          return layer.msg('更换头像失败！')
+
+        }
+        
+        layer.msg('更换头像成功!')
+        window.parent.getUserInfo()
+
+      }
+    })
   })
 })
