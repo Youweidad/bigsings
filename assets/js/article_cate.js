@@ -39,7 +39,7 @@ $(function () {
       $.ajax({
         method: 'PUT',
         url: '/my/cate/info',
-        data: $(this).serialize(),
+        data: $(this).serialize(),  //$(this).serialize()将表单内容序列化成一个字符串
         success(res) {
           if (res.code !== 0) return layer.msg('修改分类失败')
           layer.msg('修改分类成功')
@@ -51,7 +51,7 @@ $(function () {
       $.ajax({
         method: 'POST',
         url: '/my/cate/add',
-        data: $(this).serialize(),
+        data: $(this).serialize(),//$(this).serialize()将表单内容序列化成一个字符串
         // data: form.val('addFormFilter'),
         success(res) {
           if (res.code !== 0) return layer.msg('添加分类失败')
